@@ -1,0 +1,83 @@
+* { box-sizing: border-box; }
+
+body {
+  font-family: system-ui, sans-serif;
+  display: flex;
+  justify-content: center;
+  padding: 3rem 1rem;
+  margin: 0;
+  background: #1e1b2e;
+  color: #e9e5f5;
+}
+
+.reproductor { width: 340px; text-align: center; }
+
+h1 { font-size: 1.15rem; margin: 0 0 1.5rem; }
+
+.disco {
+  width: 140px;
+  height: 140px;
+  margin: 0 auto 1.2rem;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle, #1e1b2e 0 12%, transparent 13%),
+    conic-gradient(#7c3aed, #c084fc, #7c3aed, #4c1d95, #7c3aed);
+  box-shadow: 0 0 0 6px #2a2640;
+}
+
+/* El disco solo gira cuando el contenedor tiene la clase "sonando" */
+.reproductor.sonando .disco {
+  animation: girar 4s linear infinite;
+}
+
+@keyframes girar {
+  to { transform: rotate(360deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reproductor.sonando .disco { animation: none; }
+}
+
+.cancion { font-size: 1.1rem; font-weight: 600; min-height: 1.5rem; }
+
+.estado {
+  margin: 0.3rem 0 1.2rem;
+  font-size: 0.85rem;
+  color: #a59cc4;
+}
+.reproductor.sonando .estado { color: #c084fc; }
+
+.controles {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+button {
+  padding: 0.55rem 0.9rem;
+  font-size: 0.85rem;
+  border: 1px solid #3b3558;
+  border-radius: 0.6rem;
+  background: #2a2640;
+  color: #e9e5f5;
+  cursor: pointer;
+}
+button:hover:not(:disabled) { background: #3b3558; }
+button:disabled { opacity: 0.4; cursor: not-allowed; }
+
+.lista { list-style: none; padding: 0; margin: 0; text-align: left; }
+
+.lista li {
+  padding: 0.6rem 0.9rem;
+  margin-bottom: 0.3rem;
+  border-radius: 0.5rem;
+  font-size: 0.9rem;
+  color: #a59cc4;
+}
+
+.lista li.activa {
+  background: #2a2640;
+  color: #e9e5f5;
+  border-left: 3px solid #c084fc;
+}
